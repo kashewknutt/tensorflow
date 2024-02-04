@@ -20,8 +20,10 @@ print(dftrain.head())
 print(dfeval.head())
 
 y_train = dftrain.pop('survived')
+y_eval = dfeval.pop('survived')
 
 print(dftrain.head())
 print(y_train)
+print(y_train["age"])
+print(y_train.loc[0])
 
-y_eval = dfeval.pop('survived')

@@ -27,3 +27,4 @@ print(y_train)
 print(y_train["age"])
 print(y_train.loc[0])
 
+

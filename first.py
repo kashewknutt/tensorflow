@@ -24,5 +24,9 @@ y_eval = dfeval.pop('survived')
 
 print(dftrain.head())
 print(y_train)
-print(dftrain["age"])
-print(y_train.loc[0])
+print(dftrain["age"])# index by name
+print(y_train.loc[0])# index by value
+
+print(dftrain.describe())#gives a little information about the data
+
+print(dftrain.age.hist(bins=20))

@@ -24,7 +24,5 @@ y_eval = dfeval.pop('survived')
 
 print(dftrain.head())
 print(y_train)
-print(y_train["age"])
+print(dftrain["age"])
 print(y_train.loc[0])
-
-

@@ -8,7 +8,7 @@ import matplotlib as plt #Used to plot graphs, create visual manipulations.
 
 import tensorflow.compat.v2.feature_column as fc
 
-import tensorflow as ts
+import tensorflow as tf
 
 
 #loading data set from googleapis
@@ -16,17 +16,33 @@ dftrain = pd.read_csv('https://storage.googleapis.com/tf-datasets/titanic/train.
 dfeval = pd.read_csv('https://storage.googleapis.com/tf-datasets/titanic/eval.csv')
 
 #Looking at the data sets
-print(dftrain.head())
-print(dfeval.head())
+#print(dftrain.head())
+#print(dfeval.head())
 
 y_train = dftrain.pop('survived')
 y_eval = dfeval.pop('survived')
 
-print(dftrain.head())
-print(y_train)
-print(dftrain["age"])# index by name
-print(y_train.loc[0])# index by value
+#print(dftrain.head())
+#print(y_train)
+#print(dftrain["age"])# index by name
+#print(y_train.loc[0])# index by value
 
-print(dftrain.describe())#gives a little information about the data
+#print(dftrain.describe())#gives a little information about the data
 
-print(dftrain.age.hist(bins=20))
+#print(dftrain.age.hist(bins=20))
+
+
+CATEGORICAL_COLUMNS = ['sex', 'n_siblings_spouses', 'parch', 'class', 'deck', 'embark_town', 'alone']
+
+NUMERIC_COLUMNS = ['age', 'fare']
+
+feature_columns = []
+print(dftrain['sex'].unique())
+for feature_name in CATEGORICAL_COLUMNS:
+    vocabulary = dftrain[feature_name].unique() #All unique entries 
+    feature_columns.append(tf.feature_column.categorical_column_with_vocabulary_list(feature_name, vocabulary))
+
+for feature_name in NUMERIC_COLUMNS:
+    feature_columns.append(tf.feature_column.numeric_column(feature_name, dtype=tf.float32))
+
+print(feature_columns)

@@ -12,8 +12,8 @@ import tensorflow as tf
 
 
 #loading data set from googleapis
-dftrain = pd.read_csv('https://storage.googleapis.com/tf-datasets/titanic/train.csv')
-dfeval = pd.read_csv('https://storage.googleapis.com/tf-datasets/titanic/eval.csv')
+dftrain = pd.read_csv('train.csv')
+dfeval = pd.read_csv('eval.csv')
 
 #Looking at the data sets
 #print(dftrain.head())
@@ -37,7 +37,7 @@ CATEGORICAL_COLUMNS = ['sex', 'n_siblings_spouses', 'parch', 'class', 'deck', 'e
 NUMERIC_COLUMNS = ['age', 'fare']
 
 feature_columns = []
-print(dftrain['sex'].unique())
+#print(dftrain['deck'].unique())
 for feature_name in CATEGORICAL_COLUMNS:
     vocabulary = dftrain[feature_name].unique() #All unique entries 
     feature_columns.append(tf.feature_column.categorical_column_with_vocabulary_list(feature_name, vocabulary))
@@ -45,4 +45,5 @@ for feature_name in CATEGORICAL_COLUMNS:
 for feature_name in NUMERIC_COLUMNS:
     feature_columns.append(tf.feature_column.numeric_column(feature_name, dtype=tf.float32))
 
-print(feature_columns)
+for i in feature_columns:
+    print(i)

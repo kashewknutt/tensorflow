@@ -47,8 +47,8 @@ for feature_name in CATEGORICAL_COLUMNS:
 for feature_name in NUMERIC_COLUMNS:
     feature_columns.append(tf.feature_column.numeric_column(feature_name, dtype=tf.float32))
 
-#for i in feature_columns:
-#    print(i)
+for i in feature_columns:
+    print(i)
 
 
 train_input_fn = make_input_fn(dftrain, y_train)
